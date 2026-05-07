@@ -8,3 +8,9 @@ class Material(Base):
     name = Column(String, nullable=False)
     lead_time_days = Column(Integer, nullable=False)
     phase_id = Column(Integer, ForeignKey("phases.id"))
+
+    def __init__(self, id=None, name=None, lead_time_days=None, phase_id=None):
+        self.id = id
+        self.name = name
+        self.lead_time_days = lead_time_days
+        self.phase_id = phase_id

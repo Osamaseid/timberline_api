@@ -19,7 +19,7 @@ def _get_or_404(phase_id: int, db: Session) -> Phase:
 def create_phase(payload: PhaseCreate, db: Session = Depends(get_db)) -> Phase:
     if db.query(Phase).filter(Phase.order == payload.order).first():
         raise HTTPException(status_code=400, detail="Phase order must be unique.")
-    phase = Phase(**payload.dict())
+    phase = Phase(**payload.model_dump())
     db.add(phase)
     db.commit()
     db.refresh(phase)
@@ -44,7 +44,7 @@ def update_phase(
     if payload.order is not None and payload.order != phase.order:
         if db.query(Phase).filter(Phase.order == payload.order).first():
             raise HTTPException(status_code=400, detail="Phase order must be unique.")
-    for field, value in payload.dict(exclude_none=True).items():
+    for field, value in payload.model_dump(exclude_none=True).items():
         setattr(phase, field, value)
     db.commit()
     db.refresh(phase)

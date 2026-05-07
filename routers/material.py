@@ -24,7 +24,7 @@ def _validate_phase(phase_id: int, db: Session) -> None:
 @router.post("/", response_model=MaterialOut, status_code=201)
 def create_material(payload: MaterialCreate, db: Session = Depends(get_db)) -> Material:
     _validate_phase(payload.phase_id, db)
-    material = Material(**payload.dict())
+    material = Material(**payload.model_dump())
     db.add(material)
     db.commit()
     db.refresh(material)
@@ -48,7 +48,7 @@ def update_material(
     material = _get_or_404(material_id, db)
     if payload.phase_id is not None:
         _validate_phase(payload.phase_id, db)
-    for field, value in payload.dict(exclude_none=True).items():
+    for field, value in payload.model_dump(exclude_none=True).items():
         setattr(material, field, value)
     db.commit()
     db.refresh(material)

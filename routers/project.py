@@ -34,7 +34,7 @@ def get_schedule(
     cursor = earliest_safe_start
     for phase in phases:
         milestones.append(
-            PhaseMilestone(phase=PhaseOut.from_orm(phase), earliest_start_date=cursor)
+            PhaseMilestone(phase=PhaseOut.model_validate(phase), earliest_start_date=cursor)
         )
         cursor += timedelta(days=phase.duration_days)
 
