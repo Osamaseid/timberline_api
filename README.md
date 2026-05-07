@@ -59,33 +59,34 @@ Interactive documentation is automatically generated and available at:
 
 ### Phases
 
-| Method | Endpoint        | Description                    |
-|--------|-----------------|--------------------------------|
-| POST   | `/phases/`      | Create a new phase             |
-| GET    | `/phases/`      | List all phases (ordered)      |
-| GET    | `/phases/{id}`  | Get a specific phase           |
-| PUT    | `/phases/{id}`  | Update a phase                 |
-| DELETE | `/phases/{id}`  | Delete a phase                 |
+| Method | Endpoint       | Description               |
+| ------ | -------------- | ------------------------- |
+| POST   | `/phases/`     | Create a new phase        |
+| GET    | `/phases/`     | List all phases (ordered) |
+| GET    | `/phases/{id}` | Get a specific phase      |
+| PUT    | `/phases/{id}` | Update a phase            |
+| DELETE | `/phases/{id}` | Delete a phase            |
 
 ### Materials
 
-| Method | Endpoint             | Description                    |
-|--------|----------------------|--------------------------------|
-| POST   | `/materials/`        | Create a new material          |
-| GET    | `/materials/`        | List all materials             |
-| GET    | `/materials/{id}`    | Get a specific material        |
-| PUT    | `/materials/{id}`    | Update a material              |
-| DELETE | `/materials/{id}`    | Delete a material              |
+| Method | Endpoint          | Description             |
+| ------ | ----------------- | ----------------------- |
+| POST   | `/materials/`     | Create a new material   |
+| GET    | `/materials/`     | List all materials      |
+| GET    | `/materials/{id}` | Get a specific material |
+| PUT    | `/materials/{id}` | Update a material       |
+| DELETE | `/materials/{id}` | Delete a material       |
 
 ### Scheduling
 
-| Method | Endpoint      | Description                              |
-|--------|---------------|------------------------------------------|
-| GET    | `/schedule/`  | Calculate earliest safe project start    |
+| Method | Endpoint     | Description                           |
+| ------ | ------------ | ------------------------------------- |
+| GET    | `/schedule/` | Calculate earliest safe project start |
 
 ### Request/Response Examples
 
 #### Create Phase
+
 ```bash
 curl -X POST "http://localhost:8000/phases/" \
   -H "Content-Type: application/json" \
@@ -93,6 +94,7 @@ curl -X POST "http://localhost:8000/phases/" \
 ```
 
 #### Create Material
+
 ```bash
 curl -X POST "http://localhost:8000/materials/" \
   -H "Content-Type: application/json" \
@@ -100,11 +102,13 @@ curl -X POST "http://localhost:8000/materials/" \
 ```
 
 #### Get Schedule
+
 ```bash
 curl "http://localhost:8000/schedule/?desired_start=2026-06-01T00:00:00"
 ```
 
 Response:
+
 ```json
 {
   "desired_start": "2026-06-01T00:00:00",
@@ -112,7 +116,12 @@ Response:
   "delay_days": 0,
   "milestones": [
     {
-      "phase": {"id": 1, "name": "Foundation", "order": 1, "duration_days": 10},
+      "phase": {
+        "id": 1,
+        "name": "Foundation",
+        "order": 1,
+        "duration_days": 10
+      },
       "earliest_start_date": "2026-06-01T00:00:00"
     }
   ]
@@ -171,10 +180,6 @@ timberline_api/
 ├── pytest.ini               # Pytest settings
 └── requirements.txt         # Python dependencies
 ```
-
-## License
-
-[Insert License]
 
 ## Contributing
 
