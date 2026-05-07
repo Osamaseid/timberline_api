@@ -1,0 +1,34 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# Virtual environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Editor metadata
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
